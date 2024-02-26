@@ -17,3 +17,14 @@ class Friend(models.Model):
 
     def __str__(self):
         return str(self.profile.name)
+    
+
+class ChatMessage(models.Model):
+    message = models.TextField()
+    msg_sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='msg_sender')
+    msg_receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='msg_receiver')
+    seen = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.msg_sender.name + ' to ' + self.msg_receiver.name + ' : ' + self.message[:10] + '...' )
