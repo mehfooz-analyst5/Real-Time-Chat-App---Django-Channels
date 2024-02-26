@@ -7,6 +7,8 @@ urlpatterns = [
 
     path('', views.index, name='home'),
 
-    path('details/<int:pk>/', views.details, name='details')
+    path('details/<str:pk>/', views.details, name='details'),
+
+    path('sent_msg/<str:pk>/', views.sentMessage, name='sent_msg'),
 
 ]
